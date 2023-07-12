@@ -1,0 +1,27 @@
+{
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.3",
+  "version": 1,
+  "serialNumber": "urn:uuid:3e671687-395b-41f5-a30f-a58921a69b79",
+  "metadata": {
+    "tools": [
+      {
+        "name": "gosh-docker-build"
+      }
+    ]
+  },
+  "components": [
+    {
+      "type": "library",
+      "name": "gosh://0:8b1cbcd8b08a6c384e0db0d3513898d36203fced3e141a7f6b99cc580738fc22/awnion/aoc2022:be961952849f4850bbfcd87114a71a38ccb143cd",
+      "version": "1.0.0",
+      "purl": "pkg:gosh/gosh://0:8b1cbcd8b08a6c384e0db0d3513898d36203fced3e141a7f6b99cc580738fc22/awnion/aoc2022:be961952849f4850bbfcd87114a71a38ccb143cd@1.0.0"
+    },
+    {
+      "type": "file",
+      "name": "gosh://0:8b1cbcd8b08a6c384e0db0d3513898d36203fced3e141a7f6b99cc580738fc22/awnion/aoc2022:be961952849f4850bbfcd87114a71a38ccb143cd:LICENSE",
+      "version": "1.0.0",
+      "purl": "pkg:gosh/gosh://0:8b1cbcd8b08a6c384e0db0d3513898d36203fced3e141a7f6b99cc580738fc22/awnion/aoc2022:be961952849f4850bbfcd87114a71a38ccb143cd:LICENSE@1.0.0"
+    }
+  ]
+}

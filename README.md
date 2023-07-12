@@ -1,1 +1,1 @@
-# gosh-builder
+# GOSH Builder

@@ -1,0 +1,5 @@
+{
+  "editor.formatOnSave": true,
+  "testing.autoRun.delay": 1000,
+  "go.testOnSave": true
+}
