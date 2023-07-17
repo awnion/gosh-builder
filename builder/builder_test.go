@@ -1,12 +1,55 @@
 package builder
 
 import (
+	"bytes"
 	"log"
 	"testing"
+
+	"github.com/moby/buildkit/frontend/dockerfile/parser"
 )
 
-func TestBuilder(t *testing.T) {
-	Build("gosh://0:b00a7a5a24740e4a7d6487d31969732f1febcaea412df5cc307400818055ad58/at-test/telepresence-build-gosh")
+func init() {
+	log.SetFlags(log.Ltime | log.Lshortfile)
+}
 
-	log.Print("test")
+func TestBuilder(t *testing.T) {
+	target_sha, err := Build("../tests/run_dir", false)
+	if err != nil {
+		t.Fatal(err)
+	}
+	log.Println("target_sha", target_sha)
+}
+
+func TestDockerfileLock(t *testing.T) {
+	df := `
+ARG test=1
+FROM --platform=linux/amd64 scratch
+
+FROM gosh://test as builder
+
+RUN --mount=type=cache,target=/home/gosh/test \
+    --mount=type=bind,source=/home/gosh/test,target=/home/gosh/test <<EOF
+	ls -la
+EOF
+
+RUN --mount=type=bind,source=/home/gosh/test,target=/home/gosh/test ls -la
+
+FROM scratch
+RUN ls -la
+`
+	image_mapping := map[string]string{
+		"gosh://test": "scratch",
+	}
+	dfl, err := dockerfileLock([]byte(df), image_mapping)
+
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	// check if the dockerfile is valid
+	if _, err := parser.Parse(bytes.NewReader([]byte(dfl))); err != nil {
+		t.Fatal(err)
+	}
+
+	log.Println(dfl)
 }

@@ -1,0 +1,11 @@
+{
+  "something-something": "something",
+  "components": [
+    {
+      "type": "image",
+      "name": "gosh://test",
+      "version": "0.1.0",
+      "purl": "gosh://test"
+    }
+  ]
+}
